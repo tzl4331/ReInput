@@ -6,11 +6,12 @@ import threading
 import status
 
 
+
 counting = 0
 
 def Recorder():
     #Requires pynput 1.6.4 for normalize function
-    #This function will be used for RECORDING
+    #This function will be used for RECORDING USER SCRIPTS
 
     def on_keypress(key):
         logging.info('{0} {1} {2} {3}'.format(0,0, kListener._normalize(key), 'DOWN'))
@@ -55,9 +56,12 @@ def Recorder():
     
     removeLogging()
 
-
-def PermanentRecorder():        
-    print('Starting Master Keyboard Listener')
+'''
+def PermanentRecorder(): 
+    #Requires pynput 1.6.4 for normalize function
+    #This function will be used for LISTENING TO HOTKEYS
+           
+    print('Starting Master Keyboard Listener...')
 
     def on_press(key):
         print('MENU Listener: {} pressed.'.format(listener._normalize(key)))
@@ -95,11 +99,13 @@ def PermanentRecorder():
                 adjustment.move(0,-1)
             else:
                 #TODO: start the recording
-
-                pass
+                try:
+                    pass
+                except:
+                    pass
         else:
             pass
 
     listener = kl(on_release=on_release)
     listener.start()
-    
+'''
