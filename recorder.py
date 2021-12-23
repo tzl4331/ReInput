@@ -5,11 +5,12 @@ import logging
 import threading
 import status
 
-stop_hotkey_pressed = 0
+
 counting = 0
 
 def Recorder():
-    #THE REASON CTRL HOTKEYS DONT WORK IS BECAUSE IT GETS SAVED AS A WINDOWS HEX KEY, SO  IT DOESNT WORK. NEED TO FIND A WAY TO FIX THIS, OR BRUTE FORCE FIX IT
+    #Requires pynput 1.6.4 for normalize function
+    #This function will be used for RECORDING
 
     def on_keypress(key):
         logging.info('{0} {1} {2} {3}'.format(0,0, kListener._normalize(key), 'DOWN'))
@@ -55,3 +56,50 @@ def Recorder():
     removeLogging()
 
 
+def PermanentRecorder():        
+    print('Starting Master Keyboard Listener')
+
+    def on_press(key):
+        print('MENU Listener: {} pressed.'.format(listener._normalize(key)))
+    
+    def on_release(key):
+        #TODO: add something here to figure out which Hotkeys the user has set. 
+        #playKeyCombo = "keyboard.Key." + SETTINGS.Configured_playkey_temp.lower()
+        #recordKeyCombo = "keyboard.Key." + SETTINGS.Configured_recordkey_temp.lower()
+
+        #if key == eval(play_hotkey):
+        if key == eval("Key.f12"):
+            print('Hotkey for playback detected...')
+            if status.currently_playing:
+                #TODO: stop the playback
+                status.playback_stop_hotkey_pressed = True
+            else:
+                if status.currently_recording:
+                    print("Currently recording a script, cannot start playback right now. Use the Recording Hotkey to control recordings.")
+                    pass
+                else: # start the playback
+ 
+                    pass
+                
+            #Do something here.
+        elif key == eval("Key.f8"):
+            print('Hotkey for recording detected')
+            if status.currently_playing:
+                "Currently playing back a script, cannot start recording right now. The playback has to stop first, or you need to stop it."
+                pass
+            elif status.currently_recording:
+                #TODO: stop the recording
+                status.recorder_stop_hotkey_pressed = True
+                adjustment = mc()
+                adjustment.move(0,1)
+                adjustment.move(0,-1)
+            else:
+                #TODO: start the recording
+
+                pass
+        else:
+            pass
+
+    listener = kl(on_release=on_release)
+    listener.start()
+    
