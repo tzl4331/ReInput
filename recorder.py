@@ -4,6 +4,7 @@ import time
 import logging
 import threading
 import status
+import config
 
 
 
@@ -35,7 +36,17 @@ def Recorder():
             global counting
             counting += 1
 
-            if counting%12 == 0:
+            #Here, checks for recording quality setting. The lower the divisor, the higher the quality.
+            if config.Configured_sampling_method == "Fidelity":
+                divisor = 2
+            elif config.Configured_sampling_method == "Efficiency":
+                divisor = 25
+            elif config.Configured_sampling_method == "Hybrid":
+                divisor = 14
+            else:
+                divisor = 14
+
+            if counting%divisor == 0:
                 logging.info("{0} {1} {2} {3}".format(x, y, 'CM', 'idle'))
 
     def on_click(x, y, button, pressed):
@@ -48,11 +59,13 @@ def Recorder():
     
     with ml(on_move=on_move, on_click=on_click) as listener:       
         with kl(on_press=on_keypress, on_release=key_release) as kListener:
-            logging.basicConfig(filename='prologbeta.maus', filemode='w', level=logging.DEBUG, force=True, format='%(relativeCreated)d %(message)s E')
+            logging.basicConfig(filename='tempsave.maus', filemode='w', level=logging.DEBUG, force=True, format='%(relativeCreated)d %(message)s E')
 
             listener.join()
     
     status.recorder_stop_hotkey_pressed = False
+
+    status.current_filename='tempsave.maus'
     
     removeLogging()
 

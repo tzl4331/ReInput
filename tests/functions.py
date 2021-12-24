@@ -43,7 +43,7 @@ def record_button():
         main.play['state']='disabled'
         main.save['state']='disabled'
         main.load['state']='disabled'
-        main.settings['state']='disabled'
+        main.config['state']='disabled'
         main.record['state']='disabled'
 
         status.currently_recording = True
@@ -54,7 +54,7 @@ def record_button():
         main.play['state']='enabled'
         main.save['state']='enabled'
         main.load['state']='enabled'
-        main.settings['state']='enabled'
+        main.config['state']='enabled'
         main.record['state']='enabled'
     
     initialize_recording()

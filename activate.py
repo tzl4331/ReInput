@@ -5,25 +5,12 @@ from datetime import datetime
 import logging
 import time
 import gui, status
-
-
-bill = 56
-stop_hotkey_pressed = 0
-counting = int(0)
-number  = 0
-
-class StartTime:
-    def __init__(self):
-        self.time = time.time()
-    
-    def getTime(self):
-        return self.time
+import config
 
 
 class Playback:
 
     def __init__(self,  dictionary): #Takes a dictionary and plays it back. Dictionary must be valid
-        self.stop_number = 0
         self.play_count = 0
         self.required_playbacks = 1
         self.dicty = dictionary
@@ -39,10 +26,15 @@ class Playback:
         def parse_boolean(b):
             return b == "True"
         
-        while self.play_count < self.required_playbacks:
+        required_playbacks = config.loopingPlaybacks()
+        plays = 0
+        while plays < required_playbacks:
+            print('Increasing playback count by 1.')
+            plays+=1
+            print(status.number < 1 and (status.playback_stop_hotkey_pressed == False))
             for key in self.input:
                 print('Working with this entry: ' + str(self.input[key]))
-                if self.stop_number < 1 and status.playback_stop_hotkey_pressed == False:
+                if status.number < 1 and (status.playback_stop_hotkey_pressed == False):
                     if self.input[key]['whichButton'] == 'Button.middle':
                         pass
                     else:
@@ -100,11 +92,13 @@ class Playback:
                                     print(e)
                 else:
                     break
-            print('Increasing playback count by 1.')
-            self.play_count+=1
-        print('Resetting "stop_number" and "play_count"...')
-        self.stop_number = 0
-        self.play_count = 0
+            if status.playback_stop_hotkey_pressed == True:
+                print('Massively increasing the play counter to stop playback')
+                plays+=99999999999999999999
+    
+        print('Resetting "status.number" and "plays"...')
+        status.number = 0
+        plays = 0
         print('Done. Number and Playcount reset. Ready for next activation')
 
 
@@ -115,7 +109,7 @@ class Analyser:
     #later will make filename equal to the currently active file. for now we test on prologbeta
 
     def analyse():
-        filename = 'prologbeta.maus'
+        filename = status.current_filename
         count = 0
 
         with open(filename, 'r') as f:
@@ -137,19 +131,28 @@ class Analyser:
                 click_history[count] = {'delay':float(delay), 'whichButton':buttonName, 'x':int(posx), 'y':int(posy), 'timestamp':float(timestamp), 'press':press,}
         
             return click_history
+    
+    def validcheck(userfile):
+        count = 0 
 
-'''
-john = Analyser.analyse()
-print(john)
-jill = Playback(john)
-jill.start()
-print('worked')
-'''
-#Recorder.runListener()
+        with open(userfile, 'r') as f:
+            #Reads the first line to see the Initial Starting Time
+            first_line = f.readline()
+            initial_time = first_line.split()[0]
+            temp_click_history = {}
 
-'''
-print("sleepin")
-time.sleep(10)
-Recorder.runListener()
-'''
+            for line in f:
+                count+=1
+                (timestamp, posx, posy, buttonName, press, End) = line.split(' ')
+                #For each line after the first, the delay will be the Difference in Recorded Time between the current and previous line. First line delay is fixed 0.5 for smoothness.
+                if count > 1:
+                    Delay = float(timestamp) - temp_click_history[count - 1]['timestamp']
+                else:
+                    Delay = 0
+                #Adds a dictionary entry for each line in the Text File
+                temp_click_history[count] = {'delay':float(Delay), 'whichButton':buttonName, 'x':int(posx), 'y':int(posy), 'timestamp':float(timestamp), 'press':press,}
+        print(temp_click_history)
+
+
+
 

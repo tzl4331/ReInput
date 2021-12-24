@@ -1,0 +1,9 @@
+ROADMAP
+
+Finish playback and recording
+
+Add file loading and saving, and then link this to the playback and recording DONE
+
+Make the gui show the current loaded file DONE
+
+Make configurable settings for the user. Refer to maus48-public settings.py for more
