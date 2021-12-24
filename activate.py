@@ -1,9 +1,11 @@
-from pynput import mouse
-from pynput.mouse import Button, Controller as mouseController, Listener as mouseListener
-from pynput.keyboard import Controller as keyboardController, Listener as keyboardListener, Key
 from datetime import datetime
 import logging
 import time
+
+from pynput import mouse
+from pynput.mouse import Button, Controller as mouseController, Listener as mouseListener
+from pynput.keyboard import Controller as keyboardController, Listener as keyboardListener, Key
+
 import gui, status
 import config
 

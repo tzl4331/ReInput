@@ -1,9 +1,8 @@
 import threading
 import time
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 import os
-import random
 
 from pynput.mouse import Controller as mc, Listener as ml
 from pynput.keyboard import Controller as kc, Listener as kl, Key
@@ -21,9 +20,6 @@ root.attributes("-topmost", True)
 root.title("ReInput")
 
 config.loadUserSettings()
-
-def donothing():
-    pass
 
 Frame1 = tk.Frame(root)
 Frame1.pack()
@@ -53,13 +49,13 @@ s = ttk.Style()
 s.configure('my.TButton', font=('Segoe UI', 10, 'bold'))
 s.theme_use()
 
-
 def disable_buttons():
     play['state']='disabled'
     save['state']='disabled'
     load['state']='disabled'
     settings['state']='disabled'
     record['state']='disabled'
+
 def enable_buttons():
     play['state']='enabled'
     save['state']='enabled'
@@ -71,7 +67,6 @@ def update_hotkeys():
     while True:
         time.sleep(1)
         HotkeyDisplay["text"]=f"Record = {config.Configured_recordkey_temp}    |    Playback = {config.Configured_playkey_temp}"
-
 
 def play_button():
     def start():
@@ -92,19 +87,16 @@ def play_button():
     T1 = threading.Thread(target=start)
     T1.start()
 
-
 def save_button():
     fileloader.file_to_save()
 
 def load_button():
     fileloader.file_to_load()
     LoadedDisplay["text"] = "Loaded File = {0}".format(os.path.basename(status.current_filename))
-
  
 def settings_button():
     global settings_window
     settings_window = gui.Settings()
-
 
 def record_button():
     def initialize_recording():
@@ -117,7 +109,6 @@ def record_button():
         LoadedDisplay["text"]="Temporary Save = {0} ()".format(status.current_filename)
     TRecord = threading.Thread(target=initialize_recording)
     TRecord.start()
-
 
 play = ttk.Button(Frame1, text="Play", width=13, command=play_button, style='my.TButton')
 play.pack(side=tk.LEFT, padx=5, ipady=29)
@@ -142,8 +133,6 @@ HotkeyDisplay.pack()
 
 LoadedDisplay = ttk.Label(Frame2, text= "Loaded File = {}".format(status.current_filename), style='Bold.TLabel')
 LoadedDisplay.pack()
-
-
 
 def permanent_recorder(): 
     #Requires pynput 1.6.4 for normalize function. Any other version of pynput WILL NOT WORK
@@ -179,21 +168,18 @@ def permanent_recorder():
                 adjust_control.move(0,-1)
                 print('Adjustment finished')
             else: #If currently not playing or recording, then start the recording.
-                record_button()
-                
+                record_button() 
         else:
             pass
 
     listener = kl(on_release=on_release)
     listener.start()
     
-
 hotkey_thread = threading.Thread(target=permanent_recorder)
 hotkey_thread.start()
 
 hotkey_updater = threading.Thread(target=update_hotkeys)
 hotkey_updater.start()
-
 
 menubar = tk.Menu(root)
 filemenu = tk.Menu(menubar, tearoff=0)

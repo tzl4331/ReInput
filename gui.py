@@ -1,9 +1,7 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
-import activate, recorder, status
-import threading
-import config
+from tkinter import ttk
 
+import config
 
 class About:
     #About this program
@@ -28,10 +26,6 @@ class About:
         v100 = ttk.Label(changelog_frame, text="v1.0 - \nInitial Release\n(Game Anti-cheat tools coming soon!)", style='my.TLabel').pack(pady=(10,0))
 
         disclaimer = ttk.Label(win, text="ReInput cannot hold responsibility for any damages from the use/failure to use this program").pack(pady=(15,0))
-
-
-
-
 
 class Settings:
     #This is a copy and paste of the settings buttion function in maus48 public main.py. This could do with some upgrades
@@ -285,16 +279,10 @@ class Settings:
         button_apply= ttk.Button(WinFrame9, text="Save and apply changes", width=28, command=applyButton, state="disabled" )
         button_apply.pack(side=tk.BOTTOM, padx=8, ipady=5)
 
-
-        
-
-
-
-
-class eSettings:
+class WindowTest:
     def __init__(self, master):
         self.master = master
 
-        self.greeting = tk.Label(master, text="this is a test to see if the button works.")
+        self.greeting = tk.Label(master, text="This is a test to see if the button works.")
         self.greeting.pack(pady=(5,0))
 

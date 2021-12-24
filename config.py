@@ -1,10 +1,9 @@
-import tkinter as tk
-from tkinter import messagebox
 import time
 
+import tkinter as tk
+from tkinter import messagebox
+
 ####### THESE SETTINGS HAVE NOT BEEN REWRITTEN SINCE MAUS48 PUBLIC VERSION, CONSIDER CLEANING ALL THESE FUNCTIONS #######
-
-
 
 ###### User Chosen Settings: ####
 #Sampling Method:

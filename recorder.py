@@ -1,11 +1,12 @@
-from pynput.keyboard import Listener as kl, Key
-from pynput.mouse import Listener as ml, Controller as mc, Button
 import time
 import logging
 import threading
+
+from pynput.keyboard import Listener as kl, Key
+from pynput.mouse import Listener as ml, Controller as mc, Button
+
 import status
 import config
-
 
 
 counting = 0
