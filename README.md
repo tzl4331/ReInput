@@ -1,6 +1,6 @@
 # ReInput
 <p>Mouse and Keyboard Recorder (written in Python)</p>
-<p>Suitable for basic automation of repeatable tasks, autoclicking/AFK scripting in games, etc.</p>
+<p>Suitable for basic automation of repeatable tasks, autoclicking/AFK scripting in games, etc</p>
 
 <h2>Prerequisites</h2>
 <code>pip install https://github.com/moses-palmer/pynput/archive/refs/tags/v1.6.4.zip</code>
