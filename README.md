@@ -1,2 +1,2 @@
 # maus48-rewrite
-cleaner version of maus48
+ReInput - slightly cleaner rewrite of maus48, with important bug fixes

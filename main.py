@@ -22,6 +22,9 @@ root.title("ReInput")
 
 config.loadUserSettings()
 
+def donothing():
+    pass
+
 Frame1 = tk.Frame(root)
 Frame1.pack()
 
@@ -191,4 +194,15 @@ hotkey_thread.start()
 hotkey_updater = threading.Thread(target=update_hotkeys)
 hotkey_updater.start()
 
+
+menubar = tk.Menu(root)
+filemenu = tk.Menu(menubar, tearoff=0)
+filemenu.add_command(label="About", command=gui.About)
+filemenu.add_separator()
+filemenu.add_command(label="Preferences", command=settings_button)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=root.quit)
+menubar.add_cascade(label="File", menu=filemenu)
+
+root.config(menu=menubar)
 root.mainloop()

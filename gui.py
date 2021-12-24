@@ -4,12 +4,34 @@ import activate, recorder, status
 import threading
 import config
 
-class eSettings:
-    def __init__(self, master):
-        self.master = master
 
-        self.greeting = tk.Label(master, text="this is a test to see if the button works.")
-        self.greeting.pack(pady=(5,0))
+class About:
+    #About this program
+    def __init__(self):
+        win = tk.Toplevel()
+        win.geometry('625x275')
+        win.attributes('-topmost', True)
+        win.title('About')
+
+        settingsTitle = tk.Label(win, text="ReInput")
+        settingsTitle.config(font=("Segoe UI", 15))
+        settingsTitle.pack()
+        
+        label = ttk.Label(win, text="ReInput v1.0", style='Bold.TLabel').pack(pady=(10,0))
+        webpage = ttk.Label(win, text="https://github.com/quadroopl/maus48-rewrite", style='my.TLabel').pack(pady=(0,0))
+
+        about1 = ttk.Label(win, text="Mouse + Keyboard Logging and Playback Tool", style='my.TLabel').pack(pady=(10,0))
+
+        changelog_frame = tk.Frame(win)
+        changelog_frame.pack()
+        changelog_label = ttk.Label(changelog_frame, text="Version History", style='Bold.TLabel').pack(pady=(10,0))
+        v100 = ttk.Label(changelog_frame, text="v1.0 - \nInitial Release\n(Game Anti-cheat tools coming soon!)", style='my.TLabel').pack(pady=(10,0))
+
+        disclaimer = ttk.Label(win, text="ReInput cannot hold responsibility for any damages from the use/failure to use this program").pack(pady=(15,0))
+
+
+
+
 
 class Settings:
     #This is a copy and paste of the settings buttion function in maus48 public main.py. This could do with some upgrades
@@ -102,10 +124,10 @@ class Settings:
         
         ######### FUNCTIONS FOR OSRS ANTIBAN / RANDOMIZATION ############
         def antibanOnButton():
-            button_antibanOn["state"]="disabled"
-            button_antibanOff["state"]="normal"
-            button_antibanOn["text"]="Antiban is enabled"
-            button_antibanOff["text"]="Turn off OSRS Randomize Antiban"
+            #button_antibanOn["state"]="disabled"
+            #button_antibanOff["state"]="normal"
+            #button_antibanOn["text"]="Antiban is enabled"
+            #button_antibanOff["text"]="Turn off OSRS Randomize Antiban"
 
             config.User_antiban = 1
 
@@ -113,10 +135,10 @@ class Settings:
             button_apply["state"]="normal"
         
         def antibanOffButton():
-            button_antibanOff["state"]="disabled"
-            button_antibanOn["state"]="normal"
-            button_antibanOff["text"]="Antiban is disabled"
-            button_antibanOn["text"]="Turn on OSRS Randomize Antiban"
+            #button_antibanOff["state"]="disabled"
+            #button_antibanOn["state"]="normal"
+            #button_antibanOff["text"]="Antiban is disabled"
+            #button_antibanOn["text"]="Turn on OSRS Randomize Antiban"
 
             config.User_antiban = 0
 
@@ -135,7 +157,7 @@ class Settings:
         WinFrame1Labels = tk.Frame(WinFrame1)
         WinFrame1Labels.pack(side=tk.TOP)
         Samplinglabel = ttk.Label(WinFrame1Labels, text="Sampling Method", style='Bold.TLabel', anchor='w').pack(side=tk.LEFT, padx=(5,15))
-        SamplingDescription = ttk.Label(WinFrame1Labels, text="This controls how frequently cursor movements are logged.\nMore logs per second = more smooth cursor but more latency\nSlower PCs may experience higher delays.\n",).pack(side=tk.BOTTOM)
+        SamplingDescription = ttk.Label(WinFrame1Labels, text="This controls how frequently cursor movements are logged.\nMore logs per second = more smooth cursor but more latency\nSlower PCs may experience higher delays.\n", style='my.TLabel').pack(side=tk.BOTTOM)
 
         button_fidelity= ttk.Button(WinFrame2, text="Fidelity\n<500 logs/sec", width=17, command=fidelityButton, style='my.TButton' )
         button_fidelity.pack(side=tk.LEFT, padx=8, ipady=20)
@@ -157,7 +179,7 @@ class Settings:
         WinFrame3Labels.pack(side=tk.TOP)
         LoopLabel = ttk.Label(WinFrame3Labels, text="Playback Looping", style='Bold.TLabel', anchor='w').pack(side=tk.LEFT, padx=(5,15))
         
-        LoopDescription = ttk.Label(WinFrame3Labels, text="\nSingle:  Plays the loaded script once\nInfinite:  Plays the loaded script until the Stop Hotkey is pressed\n",).pack(side=tk.BOTTOM, fill=tk.X)
+        LoopDescription = ttk.Label(WinFrame3Labels, text="\nSingle:  Plays the loaded script once\nInfinite:  Plays the loaded script until the Stop Hotkey is pressed\n", style='my.TLabel').pack(side=tk.BOTTOM, fill=tk.X)
 
         button_single= ttk.Button(WinFrame4, text="Single", width=10, command=singleButton, style='my.TButton' )
         button_single.pack(side=tk.LEFT, padx=8, ipady=20)
@@ -181,7 +203,7 @@ class Settings:
         WinFrame5Labels.pack(side=tk.TOP)
         HKLabel = ttk.Label(WinFrame5Labels, text="Hotkey Preferences", style='Bold.TLabel', anchor='w').pack(side=tk.LEFT, padx=(5,15))
         
-        HKDescription = ttk.Label(WinFrame5Labels, text="Note: The playback hotkey cannot be the recording hotkey.\nYour hotkeys are also displayed on the main window.\n").pack(side=tk.BOTTOM, fill=tk.X)
+        HKDescription = ttk.Label(WinFrame5Labels, text="Note: Your playback and recording hotkey cannot be the same.\nYour hotkeys are also displayed on the main window.", style='my.TLabel').pack(side=tk.BOTTOM, fill=tk.X)
 
         #PlayHotkey Menu
         def changePlayHotkey(PHKResult):
@@ -264,5 +286,15 @@ class Settings:
         button_apply.pack(side=tk.BOTTOM, padx=8, ipady=5)
 
 
-        #SETTINGS.banana()
+        
+
+
+
+
+class eSettings:
+    def __init__(self, master):
+        self.master = master
+
+        self.greeting = tk.Label(master, text="this is a test to see if the button works.")
+        self.greeting.pack(pady=(5,0))
 
