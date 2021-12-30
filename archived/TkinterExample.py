@@ -3,9 +3,9 @@ from tkinter import Tk, Label, Button
 class MyFirstGUI:
     def __init__(self, master):
         self.master = master
-        master.title("A simple GUI")
+        master.title("A test GUI")
 
-        self.label = Label(master, text="This is our first GUI!")
+        self.label = Label(master, text="TEST123!")
         self.label.pack()
 
         self.greet_button = Button(master, text="Greet", command=self.greet)
@@ -15,7 +15,7 @@ class MyFirstGUI:
         self.close_button.pack()
 
     def greet(self):
-        print("Greetings!")
+        print("sup!")
 
 root = Tk()
 my_gui = MyFirstGUI(root)
