@@ -1,6 +1,6 @@
 # ReInput
 <p>Mouse and Keyboard Recorder (written in Python)</p>
-<p>Record your mouse and keyboard movements/clicks and replay them!</p>
+<p>Record your mouse and keyboard movements/clicks and replay them</p>
 <p>Suitable for basic automation of repeatable tasks, autoclicking, games, anti-AFK detection, etc</p>
 
 <h2>User Setup</h2>
