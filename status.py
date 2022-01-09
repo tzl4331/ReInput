@@ -1,4 +1,4 @@
-from time import sleep
+#from time import sleep
 #import threading
 
 ### THIS FILE CONTAINS VARIABLES THAT STORE THE CURRENT STATUS OF THE PROGRAM
