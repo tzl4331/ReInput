@@ -17,7 +17,7 @@ import config
 root = tk.Tk()
 root.geometry('380x170')
 root.attributes("-topmost", True)
-root.title("ReInput")
+root.title("ReInput 1.1")
 
 config.loadUserSettings()
 
@@ -27,7 +27,7 @@ Frame1.pack()
 Frame2 = tk.Frame(root)
 Frame2.pack()
 
-greeting = tk.Label(Frame1, text="ReInput v1.0", font=("Segoe UI", 15))
+greeting = tk.Label(Frame1, text="ReInput v1.1", font=("Segoe UI", 15))
 greeting.pack()
 
 ### TTK Styles for Label and Buttons ###
@@ -43,6 +43,10 @@ s2.theme_use()
 sS = ttk.Style()
 sS.configure('my2.TLabel', font=('Segoe UI', 10,))
 sS.theme_use()
+
+sSmall = ttk.Style()
+sSmall.configure('small.TLabel', font=('Segoe UI', 9))
+sSmall.theme_use()
 
 #UI: Button Styles
 s = ttk.Style()
@@ -106,7 +110,7 @@ def record_button():
         recorder.Recorder()
         status.currently_recording = False
         enable_buttons()
-        LoadedDisplay["text"]="Temporary Save = {0} ()".format(status.current_filename)
+        LoadedDisplay["text"]="Temporary Save = {0}".format(status.current_filename)
     TRecord = threading.Thread(target=initialize_recording)
     TRecord.start()
 

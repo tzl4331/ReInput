@@ -7,7 +7,7 @@ class About:
     #About this program
     def __init__(self):
         win = tk.Toplevel()
-        win.geometry('625x275')
+        win.geometry('625x250')
         win.attributes('-topmost', True)
         win.title('About')
 
@@ -15,17 +15,21 @@ class About:
         settingsTitle.config(font=("Segoe UI", 15))
         settingsTitle.pack()
         
-        label = ttk.Label(win, text="ReInput v1.0", style='Bold.TLabel').pack(pady=(10,0))
-        webpage = ttk.Label(win, text="https://github.com/quadroopl/maus48-rewrite", style='my.TLabel').pack(pady=(0,0))
+        label = ttk.Label(win, text="ReInput v1.1", style='Bold.TLabel').pack(pady=(10,0))
+        webpage = ttk.Label(win, text="https://github.com/quadroopl/ReInput", style='my.TLabel').pack(pady=(0,0))
 
         about1 = ttk.Label(win, text="Mouse + Keyboard Logging and Playback Tool", style='my.TLabel').pack(pady=(10,0))
 
-        changelog_frame = tk.Frame(win)
-        changelog_frame.pack()
-        changelog_label = ttk.Label(changelog_frame, text="Version History", style='Bold.TLabel').pack(pady=(10,0))
-        v100 = ttk.Label(changelog_frame, text="v1.0 - \nInitial Release\n(Game Anti-cheat tools coming soon!)", style='my.TLabel').pack(pady=(10,0))
+        #changelog_frame = tk.Frame(win)
+        #changelog_frame.pack()
+        #changelog_label = ttk.Label(changelog_frame, text="Version History", style='Bold.TLabel', anchor='w').pack(pady=(5,0))
+        #v100 = ttk.Label(changelog_frame, text="v1.0 - \nInitial Release", style='my.TLabel').pack(pady=(10,0))
+        #v101 = ttk.Label(changelog_frame, text="v1.1 - \nAdded File Menu\nUpdated Links", style='my.TLabel').pack(pady=(10,0))
 
-        disclaimer = ttk.Label(win, text="ReInput cannot hold responsibility for any damages from the use/failure to use this program").pack(pady=(15,0))
+
+        disclaimer_label = ttk.Label(win, text="Disclaimer", style='Bold.TLabel').pack(pady=(30,0))
+        disclaimer = ttk.Label(win, text="ReInput cannot hold responsibility for any damages from the use/failure to use this program", style='small.TLabel').pack(pady=(5,0))
+        disclaimer2 = ttk.Label(win, text="ReInput playback may add latency and is unsuitable for sensitive/millisecond precise actions.\nThe latency added will depending on CPU performance.", style='small.TLabel').pack(pady=(0,5))
 
 class Settings:
     #This is a copy and paste of the settings buttion function in maus48 public main.py. This could do with some upgrades
@@ -151,15 +155,15 @@ class Settings:
         WinFrame1Labels = tk.Frame(WinFrame1)
         WinFrame1Labels.pack(side=tk.TOP)
         Samplinglabel = ttk.Label(WinFrame1Labels, text="Sampling Method", style='Bold.TLabel', anchor='w').pack(side=tk.LEFT, padx=(5,15))
-        SamplingDescription = ttk.Label(WinFrame1Labels, text="This controls how frequently cursor movements are logged.\nMore logs per second = more smooth cursor but more latency\nSlower PCs may experience higher delays.\n", style='my.TLabel').pack(side=tk.BOTTOM)
+        SamplingDescription = ttk.Label(WinFrame1Labels, text="This controls how frequently cursor movements are logged.\nMore logs per second = more smooth cursor but more latency\nNOTE: Fidelity playback may run impractically slow on low-end PCs or Virtual Machines\n", style='my.TLabel').pack(side=tk.BOTTOM)
 
-        button_fidelity= ttk.Button(WinFrame2, text="Fidelity\n<500 logs/sec", width=17, command=fidelityButton, style='my.TButton' )
+        button_fidelity= ttk.Button(WinFrame2, text="Fidelity\n200 logs/sec", width=17, command=fidelityButton, style='my.TButton' )
         button_fidelity.pack(side=tk.LEFT, padx=8, ipady=20)
 
-        button_efficiency = ttk.Button(WinFrame2, text='Efficiency\n<40 logs/sec', width=17, command=efficiencyButton, style='my.TButton' )
+        button_efficiency = ttk.Button(WinFrame2, text='Efficiency\n40 logs/sec', width=17, command=efficiencyButton, style='my.TButton' )
         button_efficiency.pack(side=tk.LEFT, padx=8, ipady=20)
 
-        button_hybrid = ttk.Button(WinFrame2, text="Hybrid\n<70 logs/sec", width=17, command=hybridButton, style='my.TButton' )
+        button_hybrid = ttk.Button(WinFrame2, text="Hybrid\n70 logs/sec", width=17, command=hybridButton, style='my.TButton' )
         button_hybrid.pack(side=tk.RIGHT, padx=8, ipady=20)
 
         ############ FRAMES FOR PLAYBACK LOOPING ###############

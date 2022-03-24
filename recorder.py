@@ -39,7 +39,7 @@ def Recorder():
 
             #Here, checks for recording quality setting. The lower the divisor, the higher the quality.
             if config.Configured_sampling_method == "Fidelity":
-                divisor = 2
+                divisor = 5
             elif config.Configured_sampling_method == "Efficiency":
                 divisor = 25
             elif config.Configured_sampling_method == "Hybrid":
