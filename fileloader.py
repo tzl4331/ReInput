@@ -12,14 +12,14 @@ def file_to_load(): #User chooses a file. If this is a valid script file, change
             #Reads the first line to see the Initial Starting Time
             LineOne = f.readline()
             if len(LineOne)==0:
-                tk.messagebox.showwarning("Warning", "The file you selected was likely empty (the first line seemed empty, which is odd).\n\nNothing interesting happens.")
+                tk.messagebox.showwarning("Warning", "The file you selected was likely empty (the first line seemed empty, which is odd).\n\nPlease try again.")
             else:
                 try:
                     activate.Analyser.validcheck(filename)
                     status.current_filename = filename
                     print(status.current_filename)
                 except:
-                    tk.messagebox.showwarning("Warning", "Nothing interesting happens.\n\nThe file you selected is invalid. Please check your file.")
+                    tk.messagebox.showwarning("Warning", "There was an error loading the file.\n\nThe file you selected is invalid. Please check your file.")
     except:
         pass
 
@@ -31,6 +31,6 @@ def file_to_save(): #Makes a copy of the current_filename, to a place and name t
         if len(user_destination)>0:
             shutil.copyfile(temporary_save, user_destination+'.maus')
         else:
-            tk.messagebox.showwarning("Warning", "Nothing interesting happens.\n")
+            tk.messagebox.showwarning("Warning", "No changes were made.\n")
     except:
         pass
